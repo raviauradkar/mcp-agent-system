@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp-agent-system"
+version = "0.1.0"
+description = "MCP Agent system with WhatsApp integration and multiple LLM providers"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+keywords = ["mcp", "llm", "agent", "whatsapp", "anthropic", "ollama", "openai"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+dependencies = [
+    "anthropic>=0.18.0",
+    "openai>=1.0.0",
+    "httpx>=0.24.0",
+    "requests>=2.31.0",
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "pydantic>=2.0.0",
+    "twilio>=8.0.0",
+    "flask>=3.0.0",
+    "pyttsx3>=2.90",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
+
+[project.scripts]
+mcp-server = "scripts.start_mcp_server:main"
+user-details-service = "scripts.start_user_service:main"
+whatsapp-bot = "scripts.start_whatsapp_bot:main"
+agent-proxy = "scripts.start_agent_proxy:main"
+
+[tool.setuptools.packages.find]
+include = ["mcp_agent*", "services*", "scripts*", "examples*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311']
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
